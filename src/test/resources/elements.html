@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkItOut() {
+            new Promise((resolve) => setTimeout(resolve, 5000)).then(
+                () => {
+                    document.getElementById("checkDataResultID").style.display = "block";
+                }
+            )
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <table>
+            <tbody>
+            <tr>
+                <td>Vārds</td>
+                <td>
+                    <input type="text" id="fNameID">
+                </td>
+            </tr>
+            <tr>
+                <td>Uzvārds</td>
+                <td>
+                    <input type="text" id="lNameID">
+                </td>
+            </tr>
+            <tr>
+                <td>Informācija par mani</td>
+                <td>
+                    <textarea id="aboutMeID" rows="10" cols="150" name="description">Raksti te!</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Parbaudit informāciju</td>
+                <td>
+                    <button id="checkDataID" type="button" onclick="checkItOut()">Nospied mani</button>
+                    <div id="checkDataResultID" hidden style="color:green;">Viss ir labi!</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Students</td>
+                <td>
+                    <input id="studentID" type="checkbox"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Sociālie tīkli</td>
+                <td>
+                    <a href="#top" id="socialLinkID">Link Text</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Universitātes</td>
+                <td>
+                    <select name="universities" id="universitiesID">
+                        <option value="LU">Latvijas Universitāte</option>
+                        <option value="RTU">Rīgas Tehniskā universitāte</option>
+                        <option value="RSU">Rīgas Stradiņa universitāte</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Programmēšanas valoda</label>
+                </td>
+                <td>
+                    <table id="fProgrammingLangID">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input type="radio" id="javaID" name="fav_language" value="Java">
+                                <label for="javaID">HTML</label><br>
+                            </td>
+                            <td>
+                                <input type="radio" id="pythonID" name="fav_language" value="Python">
+                                <label for="pythonID">Python</label><br>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Miļāka krāsa</td>
+                <td>
+                    <select name="colors" id="colorsID" multiple>
+                        <option value="Green">Zaļa</option>
+                        <option value="Pink">Roza</option>
+                        <option value="Yellow">Dzeltena</option>
+                        <option value="Orange">Oranža</option>
+                    </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
