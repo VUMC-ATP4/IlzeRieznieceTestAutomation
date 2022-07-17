@@ -92,41 +92,69 @@ public class SauceDemoTests {
         Assert.assertEquals(inventoryPage.getPageTitle().getText(), "PRODUCTS");
        // Thread.sleep(2000);
     }
-
+// Second scenario
     @Test
-    public void secondScenario() throws InterruptedException {
+        public void errorMessageFirstNameEmptyTest(){
+            driver.get(SAUCELABS_URL);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.login("standard_user", "secret_sauce");
+            CartPage cartPage = new CartPage(driver);
+            cartPage.getShoppingCart().click();
+            CheckoutPage checkoutPage = new CheckoutPage(driver);
+            checkoutPage.getFirstNameInputField().sendKeys(" ");
+            checkoutPage.getLastNameInputField().sendKeys("Riezniece");
+            checkoutPage.getZipCodeInputField().sendKeys("LV-1010");
+            checkoutPage.getContinueButton().click();
+            Assert.assertEquals(checkoutPage.getErrorText().getText(), "Error: First Name is required");
 
+        }
+    @Test
+
+    public void errorMessageLastNameEmptyTest(){
         driver.get(SAUCELABS_URL);
-
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("standard_user", "secret_sauce");
-
-        driver.get(SAUCELABS_CART);
-
-        driver.get(SAUCELABS_CHECKOUT);
-
+        CartPage cartPage = new CartPage(driver);
+        cartPage.getShoppingCart().click();
         CheckoutPage checkoutPage = new CheckoutPage(driver);
-        checkoutPage.getFirstNameInputField().sendKeys(" ");
-        checkoutPage.getLastNameInputField().sendKeys("Riezniece");
-        checkoutPage.getZipCodeInputField().sendKeys("LV-1010");
-       // Thread.sleep(2000);
-        checkoutPage.getContinueButton().click();
-        Assert.assertEquals(checkoutPage.getErrorText().getText(), "Error: First Name is required");
-
-
         checkoutPage.getFirstNameInputField().sendKeys("Ilze");
-        checkoutPage.getLastNameInputField().sendKeys(" ");
+        checkoutPage.getLastNameInputField().sendKeys("");
         checkoutPage.getZipCodeInputField().sendKeys("LV-1010");
-       // Thread.sleep(2000);
         checkoutPage.getContinueButton().click();
         Assert.assertEquals(checkoutPage.getErrorText().getText(), "Error: Last Name is required");
 
-        checkoutPage.getFirstNameInputField().sendKeys("Ilze");
-        checkoutPage.getLastNameInputField().sendKeys("Riezniece");
-        checkoutPage.getZipCodeInputField().sendKeys(" ");
-       // Thread.sleep(2000);
-        checkoutPage.getContinueButton().click();
-        Assert.assertEquals(checkoutPage.getErrorText().getText(), "Error: Postal Code is required");
     }
 
+    @Test
+
+    public void errorMessageZipCodeEmptyTest(){
+        driver.get(SAUCELABS_URL);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("standard_user", "secret_sauce");
+        CartPage cartPage = new CartPage(driver);
+        cartPage.getShoppingCart().click();
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        checkoutPage.getFirstNameInputField().sendKeys("Ilze");
+        checkoutPage.getLastNameInputField().sendKeys("Riezniece");
+        checkoutPage.getZipCodeInputField().sendKeys("");
+        checkoutPage.getContinueButton().click();
+        Assert.assertEquals(checkoutPage.getErrorText().getText(), "Error: Postal Code is required");
+
+    }
+
+    @Test
+
+    public void errorMessageZipCodeEmptyTest2(){
+        driver.get(SAUCELABS_URL);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("standard_user", "secret_sauce");
+        driver.get(SAUCELABS_CHECKOUT);
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        checkoutPage.getFirstNameInputField().sendKeys("Ilze");
+        checkoutPage.getLastNameInputField().sendKeys("Riezniece");
+        checkoutPage.getZipCodeInputField().sendKeys("");
+        checkoutPage.getContinueButton().click();
+        Assert.assertEquals(checkoutPage.getErrorText().getText(), "Error: Postal Code is required");
+
+    }
 }
